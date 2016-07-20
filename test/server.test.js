@@ -18,4 +18,13 @@ describe('http-server', ()=>{
         done();
       });
   });
+
+  it('Error 400 on invalid URL', done=>{
+    request.get('/fakeurl')
+      .end((error, response)=>{
+        //if(error)return done(error);
+        assert.equal(response.status, 400);
+        done();
+      });
+  });
 });
