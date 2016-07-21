@@ -1,6 +1,6 @@
 const chai = require('chai');
-const chaiHttp = require('chai-http');
 const assert = chai.assert;
+const chaiHttp = require('chai-http');
 const server = require('../lib/server');
 var data = require('../data');
 
@@ -28,18 +28,27 @@ describe('http-server', ()=>{
       });
   });
 
-  it('errors on an invalid resource', done=>{
-    request.get('/foo')
+  it('errors on a note that doesn\'t exist', done=>{
+    request.get('/notes/10000')
+      .end((error, response)=>{
+        //if(error)return done(error);
+        assert.equal(response.status, 400);
+        done();
+      });
+  });
+
+  it('Error 400 invalid resource type', done=>{
+    request.get('/fakepage')
       .end((error, response)=>{
         assert.equal(response.statusCode, 400);
         done();
       });
   });
 
-  it('Error 400 on invalid URL', done=>{
-    request.get('/fakepage')
+  it('Error on POST method', done=>{
+    request.post('/notes')
       .end((error, response)=>{
-        assert.equal(response.status, 400);
+        assert.equal(response.text, 'Page not found');
         done();
       });
   });
