@@ -19,6 +19,15 @@ describe('http-server', ()=>{
       });
   });
 
+  it('gets note 1', done=>{
+    request.get('/notes/1')
+      .end((error, response)=>{
+        //if(error)return done(error);
+        assert.equal(response.text, JSON.stringify(data.notes[0]));
+        done();
+      });
+  });
+
   it('Error 400 on invalid URL', done=>{
     request.get('/fakeurl')
       .end((error, response)=>{
