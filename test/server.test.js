@@ -1,6 +1,6 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const assert = require('chai').assert;
+const assert = chai.assert;
 const server = require('../lib/server');
 var data = require('../data');
 
@@ -31,8 +31,7 @@ describe('http-server', ()=>{
   it('errors on an invalid resource', done=>{
     request.get('/foo')
       .end((error, response)=>{
-        if(error)return done(error);
-        assert.equal(response.text, 'Resource not found.');
+        assert.equal(response.statusCode, 400);
         done();
       });
   });
