@@ -8,10 +8,10 @@ This is an http server that will acts as a simple data store, backed by in-memor
 3. enter a possible call from below
 
 ### Possible calls
-`GET`/notes returns all notes
-`GET`/notes/:id the note that has that id if it exists
+- `GET`/notes returns all notes
+- `GET`/notes/:id the note that has that id if it exists
 
 ### Here's a sneak peek of other options coming soon in version 2.0
-`POST`
-`PUT`
-`DELETE`
+- `POST`
+- `PUT`
+- `DELETE`
