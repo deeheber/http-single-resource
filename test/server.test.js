@@ -31,7 +31,6 @@ describe('http-server', ()=>{
   it('errors on an invalid resource', done=>{
     request.get('/notes/foo')
       .end((error, response)=>{
-        if(error)return done(error);
         assert.equal(response.text, 'Resource not found.');
         done();
       });
