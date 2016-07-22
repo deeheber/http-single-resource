@@ -21,4 +21,16 @@ describe('database', ()=>{
       done();
     });
   });
+
+  it('errors when trying to get a video (videos don\'t exist in db)', done=>{
+
+    function expectedError() {
+      throw new Error('Resource not found.');
+    }
+
+    db.fetchSingleItem('video', id, (error)=>{
+      assert.throws(expectedError, error);
+      done();
+    });
+  });
 });
