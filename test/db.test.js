@@ -1,25 +1,23 @@
 var db = require('../lib/db');
+var books = require('../data').books;
 const assert = require('chai').assert;
 
-var resource = 'notes';
-var id = '2';
-
-var allNotes = '[{"noteBody":"note1"},{"noteBody":"note2"},{"noteBody":"note3"}]';
-var note2 = '{"noteBody":"note2"}';
+var category = 'books';
+var id = '1';
 
 describe('database', ()=>{
-  it('gets all notes', done=>{
-    db.fetchAllItems(resource, (error, result)=>{
+  it('gets all books', done=>{
+    db.fetchAllItems(category, (error, result)=>{
       if (error) return done(error);
-      assert.equal(result, allNotes);
+      assert.equal(JSON.parse(result).length, 4);
       done();
     });
   });
 
-  it('gets note 2', done=>{
-    db.fetchSingleItem(resource, id, (error, result)=>{
+  it('gets book 1', done=>{
+    db.fetchSingleItem(category, id, (error, result)=>{
       if (error) return done(error);
-      assert.equal(result, note2);
+      assert.deepEqual(JSON.parse(result), books[0]);
       done();
     });
   });
