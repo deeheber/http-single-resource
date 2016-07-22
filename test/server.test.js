@@ -28,7 +28,7 @@ describe('http-server', ()=>{
       });
   });
 
-  it('errors on an invalid resource', done=>{
+  it('errors on an invalid note id', done=>{
     request.get('/notes/foo')
       .end((error, response)=>{
         assert.equal(response.text, 'Resource not found.');
@@ -36,8 +36,24 @@ describe('http-server', ()=>{
       });
   });
 
-  it('Error 400 on invalid URL', done=>{
+  it('errors on a note that does not exist', done=>{
+    request.get('/notes/400')
+      .end((error, response)=>{
+        assert.equal(response.text, 'Resource not found.');
+        done();
+      });
+  });
+
+  it('Error 400 on invalid category', done=>{
     request.get('/fakepage')
+      .end((error, response)=>{
+        assert.equal(response.status, 400);
+        done();
+      });
+  });
+
+  it('Error 400 on invalid item', done=>{
+    request.get('/fakepage/23')
       .end((error, response)=>{
         assert.equal(response.status, 400);
         done();

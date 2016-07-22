@@ -22,7 +22,7 @@ describe('database', ()=>{
     });
   });
 
-  it('errors when trying to get a video (videos don\'t exist in db)', done=>{
+  it('errors when trying to get a video (videos don\'t exist in the data)', done=>{
 
     function expectedError() {
       throw new Error('Resource not found.');
