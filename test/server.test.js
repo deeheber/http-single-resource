@@ -44,4 +44,12 @@ describe('http-server', ()=>{
         done();
       });
   });
+
+  it('Error 400 on non GET request', done=>{
+    request.post('/notes')
+      .end((error, response)=>{
+        assert.equal(response.status, 400);
+        done();
+      });
+  });
 });
