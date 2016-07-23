@@ -1,13 +1,13 @@
 # Change log
 All notable changes to this project will be documented in this file
 
-## 1.1.0 - 2016-07-21
+## 1.1.0 - 2016-07-23
 Added
 - GET options for /books and /books/:id
 
 Changed
-- Server only routes requests/responses
-- DB only handles data
+- Server routes requests/responses only
+- DB handles data only
 
 Fixed
 - Error handling

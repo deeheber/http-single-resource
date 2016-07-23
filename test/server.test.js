@@ -2,11 +2,11 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const assert = require('chai').assert;
 const server = require('../lib/server');
-var data = require('../data');
+const data = require('../data');
 
 chai.use(chaiHttp);
 
-describe('http-server', ()=>{
+describe('server', ()=>{
 
   const request = chai.request(server);
 
@@ -28,7 +28,7 @@ describe('http-server', ()=>{
       });
   });
 
-  it('errors on an invalid note id', done=>{
+  it('errors on a note id that is not a number', done=>{
     request.get('/notes/foo')
       .end((error, response)=>{
         assert.equal(response.text, 'Resource not found.');
